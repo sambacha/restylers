@@ -1,0 +1,52 @@
+---
+name: dotnet-format
+version_cmd: |
+  dotnet format --version | cut -d+ -f1 | sed 's/^/v/'
+command:
+  - dotnet-format-files
+include:
+  - "**/*.cs"
+  - "**/*.vb"
+documentation: ["https://github.com/dotnet/format"]
+metadata:
+  languages:
+    - C#
+    - VB.NET
+  tests:
+    # Same file twice, just to exercise --files hack
+    - contents: |
+        int formatted_code;
+            void    unformatted_code  ;
+        void formatted_code_again;
+      restyled: |
+        int formatted_code;
+        void unformatted_code;
+        void formatted_code_again;
+      extension: cs
+      support:
+        path: project.csproj
+        contents: |
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <OutputType>Exe</OutputType>
+              <TargetFramework>netcoreapp3.1</TargetFramework>
+            </PropertyGroup>
+          </Project>
+    - contents: |
+        int formatted_code;
+            void    unformatted_code  ;
+        void formatted_code_again;
+      restyled: |
+        int formatted_code;
+        void unformatted_code;
+        void formatted_code_again;
+      extension: cs
+      support:
+        path: project.csproj
+        contents: |
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <OutputType>Exe</OutputType>
+              <TargetFramework>netcoreapp3.1</TargetFramework>
+            </PropertyGroup>
+          </Project>

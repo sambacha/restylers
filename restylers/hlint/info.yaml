@@ -1,0 +1,24 @@
+---
+name: hlint
+version_cmd: |
+  hlint --version | awk '{print $2}' | sed 's/,$//'
+command:
+  - hlint
+  - "--refactor"
+  - "--refactor-options=-i"
+include:
+  - "**/*.hs"
+supports_multiple_paths: false
+documentation:
+  - https://github.com/ndmitchell/hlint#readme
+  - https://github.com/restyled-io/restyled.io/wiki/Common-Errors:-HLint
+metadata:
+  languages:
+    - Haskell
+  tests:
+    - contents: |
+        main :: IO ()
+        main = putStrLn $ "hello hlint"
+      restyled: |
+        main :: IO ()
+        main = putStrLn "hello hlint"

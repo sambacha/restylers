@@ -9,9 +9,14 @@ remote_files:
 
 restylers:
   - brittany
-  - hlint
+  - hlint:
+      image: restyled/restyler-hlint:v3.1.6
+      command:
+        - hlint
+        - "--refactor"
+        - "--refactor-options=-i"
   - prettier-markdown
   - prettier-yaml
-  - rubocop
   - shfmt
-  - stylish-haskell
+  - stylish-haskell:
+      image: restyled/restyler-stylish-haskell:v0.11.0.3

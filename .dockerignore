@@ -1,0 +1,3 @@
+*.cabal
+.git
+.stack-work
